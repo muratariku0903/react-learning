@@ -57,7 +57,9 @@ export default function App() {
   * 要件
   * 制約条件（あれば）
   * ヒント（任意）
+* answer.mdを空ファイルで作成する
 * design.mdを空ファイルで作成する
+* answer.mdを作成し、README.mdに記載した課題の回答フォーマットを追記しておく
 * notes.md を以下のテンプレートで作成する
 ```md
 # 学びログ
@@ -75,6 +77,7 @@ export default function App() {
 ### レビュー時の方針
 私が実装のレビューを依頼した場合、以下の方針に従ってください。
 * 点数評価は行わない
+* 基本的には、answer.mdの内容を評価する
 * 以下を重点的に確認する
   * 設計メモ（design.md）と実装の整合性
   * state の置き場所と責務分離が適切か
