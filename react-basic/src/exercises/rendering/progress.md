@@ -3,5 +3,5 @@
 ## サブトピック一覧
 
 - [ ] render-commit-phase
-- [ ] reconciliation
+- [x] reconciliation
 - [x] key-and-identity
