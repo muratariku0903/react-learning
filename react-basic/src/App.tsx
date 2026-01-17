@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/rendering/render-commit-phase/App";
+import ExerciseApp from "./exercises/purity/pure-component/App";
 
 export default function App() {
   return <ExerciseApp />;
