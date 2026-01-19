@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/purity/pure-component/App";
+import ExerciseApp from "./exercises/purity/side-effects/App";
 
 export default function App() {
   return <ExerciseApp />;
