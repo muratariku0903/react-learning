@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/purity/strict-mode/App";
+import ExerciseApp from "./exercises/refs/useref-basics/App";
 
 export default function App() {
   return <ExerciseApp />;
