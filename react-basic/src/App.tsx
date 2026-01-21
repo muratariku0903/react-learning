@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/refs/useref-basics/App";
+import ExerciseApp from "./exercises/refs/state-vs-ref/App";
 
 export default function App() {
   return <ExerciseApp />;

@@ -3,5 +3,5 @@
 ## サブトピック一覧
 
 - [x] useref-basics（useRefの基本とDOM参照）
-- [ ] state-vs-ref（stateとrefの使い分け）
+- [x] state-vs-ref（stateとrefの使い分け）
 - [ ] forward-ref（forwardRefで親から子のDOMを操作）

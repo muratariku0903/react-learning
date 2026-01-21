@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 /**
  * 前回の値を表示するコンポーネント
@@ -12,19 +12,21 @@ import { useState } from "react";
 export function PreviousValue() {
   const [count, setCount] = useState(0);
   // 問題: 前回の値もstateで管理している
-  const [previousCount, setPreviousCount] = useState(0);
+  const prev = useRef(0);
 
   console.log("PreviousValue rendered");
 
   const handleIncrement = () => {
-    setPreviousCount(count);
-    setCount(count + 1);
+    setCount((current) => {
+      prev.current = current; // 「更新前」を確実に保存
+      return current + 1;
+    });
   };
 
   return (
     <div>
       <p>現在の値: {count}</p>
-      <p>前回の値: {previousCount}</p>
+      <p>前回の値: {prev.current}</p>
       <button onClick={handleIncrement}>+1</button>
     </div>
   );
