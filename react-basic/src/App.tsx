@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/refs/forward-ref/App";
+import ExerciseApp from "./exercises/context/props-drilling/App";
 
 export default function App() {
   return <ExerciseApp />;
