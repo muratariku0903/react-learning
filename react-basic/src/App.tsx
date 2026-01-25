@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/refs/state-vs-ref/App";
+import ExerciseApp from "./exercises/refs/forward-ref/App";
 
 export default function App() {
   return <ExerciseApp />;

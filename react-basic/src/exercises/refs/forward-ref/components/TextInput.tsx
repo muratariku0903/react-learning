@@ -1,5 +1,5 @@
 // TODO: forwardRefをimport
-// import { forwardRef } from "react";
+import { forwardRef } from "react";
 
 /**
  * フォーカス可能なカスタム入力コンポーネント
@@ -20,11 +20,14 @@ type TextInputProps = {
 };
 
 // TODO: forwardRefを使った実装に変更
-export function TextInput({ label }: TextInputProps) {
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+  const { label } = props;
+
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
       <label style={{ minWidth: "120px" }}>{label}:</label>
       <input
+        ref={ref}
         type="text"
         style={{
           padding: "8px",
@@ -34,4 +37,4 @@ export function TextInput({ label }: TextInputProps) {
       />
     </div>
   );
-}
+});
