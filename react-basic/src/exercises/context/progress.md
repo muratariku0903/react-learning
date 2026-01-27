@@ -4,4 +4,4 @@
 
 - [×] props-drilling（props drilling問題の理解）
 - [x] basic-usage（Contextの基本的な使い方）
-- [ ] context-pitfalls（Contextの落とし穴とパフォーマンス）
+- [x] context-pitfalls（Contextの落とし穴とパフォーマンス）
