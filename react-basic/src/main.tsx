@@ -3,9 +3,8 @@ import "./index.css";
 import App from "./App.tsx";
 import React from "react";
 
-createRoot(document.getElementById("root")!).render(<App />);
-// createRoot(document.getElementById("root")!).render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
+createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);

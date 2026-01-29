@@ -47,7 +47,7 @@ export default function App() {
         )}
       </div>
 
-      <div style={{ marginTop: '20px', padding: '20px', background: '#f5f5f5' }}>
+      <div style={{ marginTop: '20px', padding: '20px', background: '#f5f5' }}>
         <h3>確認ポイント</h3>
         <ul>
           <li>モーダルが画面中央に表示されるか</li>
