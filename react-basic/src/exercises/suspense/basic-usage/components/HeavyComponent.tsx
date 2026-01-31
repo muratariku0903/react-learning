@@ -9,7 +9,7 @@ export default function HeavyComponent() {
         padding: "20px",
         border: "2px solid #333",
         borderRadius: "8px",
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#f0f0",
       }}
     >
       <h2>Heavy Component</h2>

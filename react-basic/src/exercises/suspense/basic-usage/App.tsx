@@ -1,5 +1,6 @@
-// TODO: React.lazy() と Suspense を使って遅延読み込みに変更してください
-import HeavyComponent from "./components/HeavyComponent";
+import { lazy, Suspense } from "react";
+
+const HeavyComponent = lazy(() => import("./components/HeavyComponent"));
 
 export default function App() {
   return (
@@ -8,7 +9,9 @@ export default function App() {
       <p>下のコンポーネントを遅延読み込みに変更してください</p>
 
       {/* TODO: Suspenseでラップしてください */}
-      <HeavyComponent />
+      <Suspense fallback={<div>読み込み中...</div>}>
+        <HeavyComponent />
+      </Suspense>
     </div>
   );
 }
