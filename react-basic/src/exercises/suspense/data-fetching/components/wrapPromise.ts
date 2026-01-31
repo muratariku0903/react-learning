@@ -30,7 +30,7 @@ export function wrapPromise<T>(promise: Promise<T>): SuspenseResource<T> {
     (err) => {
       status = "error";
       error = err;
-    }
+    },
   );
 
   return {

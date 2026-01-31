@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { Suspense } from "react";
+import { wrapPromise } from "./components/wrapPromise";
 
 // 従来のパターン: useEffect + useState でデータ取得
 // TODO: これを Suspense 対応のパターンに書き換えてください
@@ -18,25 +19,15 @@ function fetchUser(): Promise<User> {
         name: "田中太郎",
         email: "tanaka@example.com",
       });
-    }, 1000);
+    }, 2000);
   });
 }
 
+const userResource = wrapPromise(fetchUser());
+
 // 従来パターンのUserProfileコンポーネント
-// TODO: Suspense対応に書き換えてください
 function UserProfile() {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchUser().then((u) => {
-      setUser(u);
-      setLoading(false);
-    });
-  }, []);
-
-  if (loading) return <div>読み込み中...</div>;
-  if (!user) return null;
+  const user = userResource.read();
 
   return (
     <div
@@ -58,8 +49,9 @@ export default function App() {
       <h1>データ取得とSuspense</h1>
       <p>下のコンポーネントをSuspense対応に書き換えてください</p>
 
-      {/* TODO: Suspenseでラップしてください */}
-      <UserProfile />
+      <Suspense fallback={<div>読み込み中...</div>}>
+        <UserProfile />
+      </Suspense>
     </div>
   );
 }
