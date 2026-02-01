@@ -4,5 +4,5 @@
 
 - [x] basic-usage（Suspenseの基本的な使い方・lazy loading）
 - [x] data-fetching（データ取得とSuspense）
-- [ ] error-boundary（ErrorBoundaryとの組み合わせ）
+- [x] error-boundary（ErrorBoundaryとの組み合わせ）
 - [ ] transitions（useTransition / startTransitionとの連携）

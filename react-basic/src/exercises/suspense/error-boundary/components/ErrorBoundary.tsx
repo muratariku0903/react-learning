@@ -1,21 +1,41 @@
-import { Component, ReactNode } from "react";
+import { Component, Fragment, type ReactNode } from "react";
 
-// TODO: ErrorBoundary を実装してください
 // ヒント: getDerivedStateFromError と componentDidCatch を使用します
 
 type Props = {
   children: ReactNode;
-  fallback: ReactNode;
+  fallback: (args: { reset: () => void }) => ReactNode;
 };
 
 type State = {
-  // TODO: 必要な state を定義してください
+  hasError: boolean;
+  retryKey: number;
 };
 
 export class ErrorBoundary extends Component<Props, State> {
-  // TODO: 実装してください
+  state: State = { hasError: false, retryKey: 0 };
+
+  static getDerivedStateFromError(error: unknown) {
+    if (error) {
+      return { hasError: true };
+    }
+
+    return {};
+  }
+
+  static componentDidCatch(error: unknown, errorInfo: unknown) {
+    console.error(error, errorInfo);
+  }
+
+  private reset = () => {
+    this.setState((prev) => ({
+      hasError: false,
+      retryKey: prev.retryKey + 1,
+    }));
+  };
 
   render() {
-    return this.props.children;
+    if (this.state.hasError) return this.props.fallback({ reset: this.reset });
+    return <Fragment key={this.state.retryKey}>{this.props.children}</Fragment>;
   }
 }
