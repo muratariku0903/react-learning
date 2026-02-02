@@ -1,4 +1,4 @@
-import { useState, Suspense } from "react";
+import { useState, Suspense, useTransition } from "react";
 import { wrapPromise } from "./components/wrapPromise";
 
 // TODO: useTransition を使って、入力はサクサク、結果更新は後回しにしてください
@@ -26,7 +26,7 @@ function searchItems(query: string): Promise<SearchResult[]> {
         { id: 5, title: `${query} 入門` },
       ];
       resolve(results);
-    }, 1000);
+    }, 2000);
   });
 }
 
@@ -62,13 +62,14 @@ const initialResource = createSearchResource("");
 export default function App() {
   const [query, setQuery] = useState("");
   const [resource, setResource] = useState(initialResource);
+  const [isPending, startTransition] = useTransition();
 
   // 現状: 入力のたびに同期的にリソースを更新
   // これにより、タイピングがもたつく可能性がある
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const nextQuery = e.target.value;
     setQuery(nextQuery);
-    setResource(createSearchResource(nextQuery));
+    startTransition(() => setResource(createSearchResource(nextQuery)));
   }
 
   return (
@@ -88,8 +89,12 @@ export default function App() {
         </label>
       </div>
 
-      {/* TODO: isPending を使って、更新中であることを視覚的に表示してください */}
-      <div>
+      <div
+        style={{
+          opacity: isPending ? 0.6 : 1,
+          transition: "opacity 150ms ease",
+        }}
+      >
         <Suspense fallback={<div>検索中...</div>}>
           <SearchResults resource={resource} />
         </Suspense>
