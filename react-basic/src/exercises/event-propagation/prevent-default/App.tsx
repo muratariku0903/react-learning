@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 export default function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showTermsModal, setShowTermsModal] = useState(false);
 
-  const handleSubmit = () => {
-    // TODO: ここでフォーム送信処理を行いたいが、ページがリロードされてしまう
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     console.log("送信:", { username, password });
   };
 
@@ -16,9 +16,7 @@ export default function App() {
 
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "15px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            ユーザー名
-          </label>
+          <label style={{ display: "block", marginBottom: "5px" }}>ユーザー名</label>
           <input
             type="text"
             value={username}
@@ -28,9 +26,7 @@ export default function App() {
         </div>
 
         <div style={{ marginBottom: "15px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            パスワード
-          </label>
+          <label style={{ display: "block", marginBottom: "5px" }}>パスワード</label>
           <input
             type="password"
             value={password}
@@ -58,8 +54,8 @@ export default function App() {
       <div style={{ marginTop: "20px", fontSize: "14px" }}>
         <a
           href="https://example.com/terms"
-          onClick={() => {
-            // TODO: ページ遷移せずにモーダルを表示したい
+          onClick={(e) => {
+            e.preventDefault();
             setShowTermsModal(true);
           }}
         >
