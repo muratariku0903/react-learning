@@ -21,7 +21,6 @@ export default function App() {
   };
 
   const handleDelete = (id: number) => {
-    // TODO: ここに修正が必要かもしれません
     alert(`カード ${id} を削除しますか？`);
   };
 
@@ -43,13 +42,22 @@ export default function App() {
               backgroundColor: selectedId === card.id ? "#e6f0ff" : "white",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <div>
                 <h3 style={{ margin: 0 }}>{card.title}</h3>
                 <p style={{ margin: "5px 0 0", color: "#666" }}>{card.description}</p>
               </div>
               <button
-                onClick={() => handleDelete(card.id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(card.id);
+                }}
                 style={{
                   padding: "8px 16px",
                   backgroundColor: "#ff4444",
