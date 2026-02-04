@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/event-propagation/prevent-default/App";
+import ExerciseApp from "./exercises/event-propagation/combined-usage/App";
 
 export default function App() {
   return <ExerciseApp />;

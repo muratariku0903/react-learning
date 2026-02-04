@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent } from "react";
 
 type MenuItem = {
   label: string;
@@ -34,9 +34,13 @@ export default function App() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleMenuItemClick = (item: MenuItem) => {
-    // TODO: ここに修正が必要
+  const handleMenuItemClick = (e: MouseEvent<HTMLAnchorElement>, item: MenuItem) => {
+    // e.stopPropagation();
     // SPAリンクの場合はページ遷移を止めて、コンソールに出力後、メニューを閉じる
+    if (item.isSpaLink) {
+      e.preventDefault();
+    }
+
     // 通常リンクの場合はそのままページ遷移させる
     console.log(`ナビゲート: ${item.href}`);
     setCurrentPath(item.href);
@@ -90,7 +94,7 @@ export default function App() {
                 <a
                   key={item.href}
                   href={item.href}
-                  onClick={() => handleMenuItemClick(item)}
+                  onClick={(e) => handleMenuItemClick(e, item)}
                   style={{
                     display: "block",
                     padding: "10px 15px",
@@ -112,7 +116,7 @@ export default function App() {
         </div>
       </nav>
 
-      <div style={{ marginTop: "20px", padding: "20px", backgroundColor: "#f5f5f5" }}>
+      <div style={{ marginTop: "20px", padding: "20px", backgroundColor: "#f5f5" }}>
         <h2>現在のパス: {currentPath}</h2>
         <p>メニューから項目を選択してください。</p>
         <p style={{ fontSize: "14px", color: "#666" }}>

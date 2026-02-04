@@ -4,4 +4,4 @@
 
 - [x] bubbling（バブリングとstopPropagation）
 - [x] prevent-default（デフォルト動作の阻止）
-- [ ] combined-usage（stopPropagationとpreventDefaultの組み合わせ）
+- [x] combined-usage（stopPropagationとpreventDefaultの組み合わせ）
