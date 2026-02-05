@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/scope/basic-scope/App";
+import ExerciseApp from "./exercises/useState/basic-concepts/App";
 
 export default function App() {
   return <ExerciseApp />;
