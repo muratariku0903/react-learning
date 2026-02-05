@@ -1,12 +1,9 @@
-# React Hooks 仕組み学習用演習ルール
+# React学習用演習ルール
 
 ## 目的
-このリポジトリは、ReactのHooksの仕組みを根本から理解するための学習用演習を進めるためのものです。
+このリポジトリは、Reactの学習用演習を進めるためのものです。
 あなた（Claude Code）の役割は、演習の作成・実装・レビュー・改善を手助けしつつ、
 リポジトリ構成と学習方針を一貫して保つことです。
-
-## 参考記事
-https://zenn.dev/fitness_densuke/articles/2026-01-01-react-hooks-fundamental
 
 ## 言語ルール
 - 演習用ドキュメント（README.md / notes.md）は **必ず日本語** で書いてください。
@@ -17,15 +14,18 @@ https://zenn.dev/fitness_densuke/articles/2026-01-01-react-hooks-fundamental
 * src/exercises/
 ### 基本構成：
 * src/exercises/
-  * トピック名/
-    * サブトピック名/
+  * __template/
+    * problem1/
       * README.md
       * notes.md
       * answer.md
       * design.md
       * App.tsx
       * components/
+    * problem2/
+    * problem3/
 ### ルール
+- `__template/` は **雛形・参照用** です。明示的に指示しない限り変更しないでください。
 - まず、`src/exercises/トピック名`として作成してください。
 - さらに、演習課題はその`src/exercises/トピック名`にサブディレクトリを作成し`src/exercises/トピック名/サブトピック名`として下さい。
 - 各演習ディレクトリには、必ず以下を含めてください。
@@ -45,7 +45,7 @@ https://zenn.dev/fitness_densuke/articles/2026-01-01-react-hooks-fundamental
 例：
 
 ```ts
-import ExerciseApp from "./exercises/scope/basic-scope/App";
+import ExerciseApp from "./exercises/problem1/App";
 
 export default function App() {
   return <ExerciseApp />;
@@ -92,6 +92,9 @@ export default function App() {
 * 大規模なリファクタは依頼された場合のみ行ってください
 * 可能な限り、変更は対象の演習ディレクトリ内に留めてください
 
+## その他・注意事項
+* docs/roadmap配下ドキュメントに含まれてる画像などは無視
+
 ## 学習指導の方針
 このリポジトリは学習用途のため、ユーザーからの質問に対しては以下の方針で対応してください。
 
@@ -101,28 +104,13 @@ export default function App() {
 * **自分で気づかせる** - 間違いを指摘するより、矛盾や問題点に気づくような問いかけをする
 * **理解度を確認する** - 「この部分はどう理解していますか？」と確認し、誤解があれば修正を促す
 
-## 学習カリキュラム（章構成）
-以下の順番で学習を進める。
+例：
+```
+ユーザー: 「useEffectとuseLayoutEffectの違いは何ですか？」
 
-### 第1章：JavaScriptのスコープ（scope/）
-1. basic-scope - スコープの基本（グローバル・ローカル）
-2. lexical-scope - レキシカルスコープ
-3. scope-chain - スコープチェーン
+悪い対応: 「useEffectは描画後に実行され、useLayoutEffectは描画前に実行されます。」
 
-### 第2章：クロージャ（closure/）
-1. basic-closure - クロージャの基本
-2. variable-persistence - 変数の永続化
-3. practical-patterns - 実用パターン
-
-### 第3章：useStateの仕組み（use-state-mechanism/）
-1. component-problem - 関数コンポーネントの課題
-2. state-outside - 外部への状態保存
-3. minimal-implementation - useStateの最小実装
-4. multiple-state - 複数useState対応
-5. call-order-rule - 呼び出し順序のルール
-
-### 第4章：useEffectの仕組み（use-effect-mechanism/）
-1. side-effects - 副作用とは
-2. dependency-array - 依存配列の役割
-3. minimal-implementation - useEffectの最小実装
-4. cleanup - クリーンアップ関数
+良い対応: 「両方とも副作用を扱うHooksですね。実行タイミングの違いがあるのですが、
+          どちらが先に実行されると思いますか？また、その違いがどんな場面で
+          重要になると思いますか？」
+```
