@@ -5,13 +5,15 @@
  * なぜ動かないかを理解し、useStateを使って修正してください。
  */
 
+import { useState } from "react";
+
 function App() {
-  // 問題: ローカル変数を使っている
-  let count = 0;
+  const [count, setCount] = useState(0);
 
   function handleClick() {
-    count = count + 1;
-    console.log("count:", count); // コンソールでは増えている
+    const newCount = count + 1;
+    console.log("count:", newCount); // コンソールでは増えている
+    setCount(newCount);
   }
 
   return (
