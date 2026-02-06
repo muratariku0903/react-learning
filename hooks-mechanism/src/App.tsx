@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/useState/basic-concepts/App";
+import ExerciseApp from "./exercises/useState/hooks-array/App";
 
 export default function App() {
   return <ExerciseApp />;

@@ -3,5 +3,5 @@
 ## サブトピック一覧
 
 - [x] basic-concepts（基本概念：なぜuseStateが必要か）
-- [ ] hooks-array（配列とインデックス：呼び出し順の重要性）
+- [x] hooks-array（配列とインデックス：呼び出し順の重要性）
 - [ ] batch-and-queue（バッチ処理とキュー：なぜ即時に変わらないか）
