@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/useState/batch-and-queue/App";
+import ExerciseApp from "./exercises/useEffect/basic-concept/App";
 
 export default function App() {
   return <ExerciseApp />;
