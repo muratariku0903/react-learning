@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/useState/hooks-array/App";
+import ExerciseApp from "./exercises/useState/batch-and-queue/App";
 
 export default function App() {
   return <ExerciseApp />;

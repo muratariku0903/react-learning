@@ -16,8 +16,8 @@ function App() {
   function handleLike() {
     // シミュレーション: 非同期処理後に更新（API呼び出しを想定）
     setTimeout(() => {
-      setLikes(likes + 1);
-    }, 100);
+      setLikes((prev) => prev + 1);
+    }, 1000);
   }
 
   return (
@@ -34,9 +34,7 @@ function App() {
       >
         いいね！
       </button>
-      <p style={{ color: "#666", marginTop: "10px" }}>
-        ※ 素早く連打してみてください
-      </p>
+      <p style={{ color: "#666", marginTop: "10px" }}>※ 素早く連打してみてください</p>
     </div>
   );
 }
