@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * 問題のあるコード
@@ -8,9 +8,9 @@ import { useState } from "react";
 function Counter() {
   const [count, setCount] = useState(0);
 
-  // ここに問題がある！
-  // レンダー中に副作用を実行している
-  console.log(`[レンダー中] カウントが変更されました: ${count}`);
+  useEffect(() => {
+    console.log(`[レンダー中] カウントが変更されました: ${count}`);
+  }, [count]);
 
   // 仮にAPIリクエストをここで行ったらどうなる？
   // fetch(`/api/log?count=${count}`) // これは絶対にやってはいけない
