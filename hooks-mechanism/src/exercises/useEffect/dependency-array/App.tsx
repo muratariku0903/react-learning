@@ -9,15 +9,14 @@ function Timer() {
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
-    if (isRunning) {
-      const intervalId = setInterval(() => {
-        // ここに問題がある！
-        setCount(count + 1);
-      }, 1000);
+    if (!isRunning) return;
 
-      return () => clearInterval(intervalId);
-    }
-  }, [isRunning]); // ← この依存配列は正しい？
+    const intervalId = setInterval(() => {
+      setCount((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [isRunning]);
 
   const handleStart = () => {
     setIsRunning(true);
