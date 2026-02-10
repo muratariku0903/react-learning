@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/useEffect/dependency-array/App";
+import ExerciseApp from "./exercises/useEffect/cleanup/App";
 
 export default function App() {
   return <ExerciseApp />;

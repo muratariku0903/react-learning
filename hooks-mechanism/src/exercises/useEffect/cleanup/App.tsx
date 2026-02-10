@@ -19,6 +19,7 @@ function MouseTracker() {
       window.addEventListener("mousemove", handleMouseMove);
 
       // ここに問題がある！クリーンアップ関数がない
+      return () => window.removeEventListener("mousemove", handleMouseMove);
     }
   }, [isTracking]);
 
@@ -34,7 +35,7 @@ function MouseTracker() {
         style={{
           marginTop: "20px",
           padding: "20px",
-          backgroundColor: isTracking ? "#e8f5e9" : "#ffebee",
+          backgroundColor: isTracking ? "#e8f" : "#e11",
           borderRadius: "8px",
         }}
       >
@@ -50,9 +51,7 @@ function MouseTracker() {
         <p>1. 追跡ONにして、マウスを動かしてください</p>
         <p>2. 追跡OFFにして、再度ONにしてください</p>
         <p>3. コンソールを確認してください。何が起きていますか？</p>
-        <p>
-          4. ブラウザの開発者ツールでEvent Listenersを確認してみてください
-        </p>
+        <p>4. ブラウザの開発者ツールでEvent Listenersを確認してみてください</p>
       </div>
     </div>
   );
