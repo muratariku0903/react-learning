@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const ITEMS = [
   "React",
@@ -20,9 +20,7 @@ function filterItems(query: string): string[] {
   while (performance.now() - start < 100) {
     // 100msの遅延
   }
-  return ITEMS.filter((item) =>
-    item.toLowerCase().includes(query.toLowerCase())
-  );
+  return ITEMS.filter((item) => item.toLowerCase().includes(query.toLowerCase()));
 }
 
 export default function App() {
@@ -30,7 +28,7 @@ export default function App() {
   const [count, setCount] = useState(0);
 
   // TODO: この処理はcountが変わるたびにも実行されてしまう
-  const filteredItems = filterItems(query);
+  const filteredItems = useMemo(() => filterItems(query), [query]);
 
   return (
     <div style={{ padding: "20px" }}>
