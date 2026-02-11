@@ -1,28 +1,30 @@
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 // TODO: このコンポーネントは親のstate変更のたびに再レンダーされてしまう
-function TodoItem({
+const TodoItem = memo(function TodoItem({
   text,
+  index,
   onDelete,
 }: {
   text: string;
-  onDelete: () => void;
+  index: number;
+  onDelete: (index: number) => void;
 }) {
   console.log(`TodoItem rendered: ${text}`);
   return (
     <li>
-      {text} <button onClick={onDelete}>削除</button>
+      {text} <button onClick={() => onDelete(index)}>削除</button>
     </li>
   );
-}
+});
 
 export default function App() {
   const [count, setCount] = useState(0);
   const [todos] = useState(["買い物に行く", "本を読む", "コードを書く"]);
 
-  const handleDelete = (index: number) => {
+  const handleDelete = useCallback((index: number) => {
     console.log(`Todo ${index} を削除`);
-  };
+  }, []);
 
   return (
     <div style={{ padding: "20px" }}>
@@ -35,7 +37,7 @@ export default function App() {
 
       <ul>
         {todos.map((todo, i) => (
-          <TodoItem key={todo} text={todo} onDelete={() => handleDelete(i)} />
+          <TodoItem key={todo} text={todo} index={i} onDelete={handleDelete} />
         ))}
       </ul>
     </div>
