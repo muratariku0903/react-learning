@@ -233,16 +233,30 @@ src/app/exercises/layerXX-テーマ名/演習名/
 
 ## 進捗管理
 
-各レイヤーの進捗は以下の形式で `learning-plan.md` 内に記録する:
+各レイヤーのディレクトリ直下に `progress.md` を配置し、進捗を管理する。
 
-```markdown
-### Layer 1: Next.jsの基本構造
-- [x] 演習1-1: App Router構造の理解 ✅ 完了
-- [x] 演習1-2: Server Component vs Client Component ✅ 完了
-- [ ] 演習1-3: 特殊ファイル群の挙動理解 ← 進行中
+### ファイルの場所
+```
+src/app/exercises/layer01-basics/progress.md
+src/app/exercises/layer02-data-fetch/progress.md
+...
 ```
 
-ユーザーが「進捗を教えて」と聞いた場合:
-1. `src/app/exercises/` 配下の演習ディレクトリを確認
-2. 各演習の answer.md, design.md の記入状況を確認
+### フォーマット
+```markdown
+# Layer X: テーマ名 進捗管理
+
+## サブトピック一覧
+
+- [x] 01-xxx（完了した演習の説明）
+- [ ] 02-yyy（未着手の演習の説明）
+```
+
+### 更新タイミング
+- 演習のレビューが完了し、言語化・実装ともに合格した時点で `[x]` に更新する
+- Claude Codeがレビュー完了時に自動で更新する
+
+### ユーザーが「進捗を教えて」と聞いた場合
+1. 対象レイヤーの `progress.md` を読む
+2. 各演習の answer.md, design.md の記入状況も確認
 3. 完了・進行中・未着手を一覧で報告
