@@ -4,4 +4,4 @@
 
 - [x] basic-concept（useMemoの基本 - 参照の同一性と値のキャッシュ）
 - [x] useCallback-and-memo（useCallbackとReact.memoの連携）
-- [ ] when-to-use（使いどころの判断 - 過剰な最適化を避ける）
+- [x] when-to-use（使いどころの判断 - 過剰な最適化を避ける）

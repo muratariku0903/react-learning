@@ -25,14 +25,10 @@ export default function App() {
   const [query, setQuery] = useState("");
 
   // (1) タイトル文字列をuseMemoでキャッシュ
-  const title = useMemo(() => {
-    return `検索結果（${count}回クリック済み）`;
-  }, [count]);
+  const title = `検索結果（${count}回クリック済み）`;
 
   // (2) スタイルオブジェクトをuseMemoでキャッシュ
-  const containerStyle = useMemo(() => {
-    return { padding: "20px", border: "1px solid #ccc" };
-  }, []);
+  const containerStyle = { padding: "20px", border: "1px solid #ccc" };
 
   // (3) 検索対象のアイテムリスト
   const allItems = useMemo(() => {
@@ -42,9 +38,7 @@ export default function App() {
   // (4) フィルタリング処理をuseMemoでキャッシュ
   const filteredItems = useMemo(() => {
     console.log("フィルタリング実行");
-    return allItems.filter((item) =>
-      item.toLowerCase().includes(query.toLowerCase())
-    );
+    return allItems.filter((item) => item.toLowerCase().includes(query.toLowerCase()));
   }, [query, allItems]);
 
   // (5) クリックハンドラをuseCallbackでキャッシュ
@@ -53,14 +47,12 @@ export default function App() {
   }, []);
 
   // (6) カウントのインクリメントをuseCallbackでキャッシュ
-  const handleIncrement = useCallback(() => {
+  const handleIncrement = () => {
     setCount((c) => c + 1);
-  }, []);
+  };
 
   // (7) queryの文字数をuseMemoでキャッシュ
-  const queryLength = useMemo(() => {
-    return query.length;
-  }, [query]);
+  const queryLength = query.length;
 
   return (
     <div style={containerStyle}>

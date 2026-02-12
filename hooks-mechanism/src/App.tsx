@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/useMemo-useCallback/useCallback-and-memo/App";
+import ExerciseApp from "./exercises/useMemo-useCallback/when-to-use/App";
 
 export default function App() {
   return <ExerciseApp />;
