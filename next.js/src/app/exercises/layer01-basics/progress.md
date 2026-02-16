@@ -3,5 +3,5 @@
 ## サブトピック一覧
 
 - [x] 01-app-router（App Router構造の理解：layout/page/Nested Layout）
-- [ ] 02-server-client-component（Server Component vs Client Component）
+- [x] 02-server-client-component（Server Component vs Client Component）
 - [ ] 03-special-files（特殊ファイル群の挙動理解：loading/error/not-found）

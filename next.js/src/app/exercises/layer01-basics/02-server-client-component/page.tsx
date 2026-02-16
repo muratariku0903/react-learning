@@ -2,6 +2,8 @@
 // 課題A: ここに useState を追加してみて、何が起きるか確認する
 // 課題B: 完了後、Server / Client を適切に分離したページに仕上げる
 
+import LikeButton from "./components/LikeButton";
+
 // サーバー側で取得したデータ（本来はDB/APIから取得するが、今回はハードコード）
 function getUserData() {
   return {
@@ -28,11 +30,14 @@ export default function ServerClientPage() {
         <p>参加日: {user.joinedAt}</p>
       </section>
 
-      {/* TODO: ここに「いいねボタン」（Client Component）を配置する */}
       <section className="mb-8 p-4 border rounded">
         <h2 className="text-lg font-semibold mb-2">いいねボタン</h2>
         <p className="text-zinc-500">
-          → components/LikeButton.tsx を作成して、ここに配置してください
+          <LikeButton
+            name="test"
+            obj={{ name: "taro" }}
+            // fn={() => console.log("hello")}
+          />
         </p>
       </section>
     </div>
