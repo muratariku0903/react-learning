@@ -1,7 +1,9 @@
 // TODO: 意図的に遅い処理を入れて、loading.tsx が発火することを確認する
 // ヒント: async コンポーネントにして、await で遅延を入れる
 
-export default function SlowPage() {
+export default async function SlowPage() {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
   return (
     <div className="p-8">
       <h2 className="text-xl font-bold mb-4">遅いページ</h2>

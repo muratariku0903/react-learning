@@ -1,7 +1,4 @@
-// TODO: ユーザー詳細ページを実装する
-// - 有効なユーザーIDは 1, 2, 3 のみ
-// - それ以外のIDでアクセスされたら notFound() を呼ぶ
-// ヒント: next/navigation から notFound をインポートする
+import { notFound } from "next/navigation";
 
 const users: Record<string, { name: string; email: string }> = {
   "1": { name: "田中太郎", email: "tanaka@example.com" },
@@ -9,14 +6,10 @@ const users: Record<string, { name: string; email: string }> = {
   "3": { name: "佐藤次郎", email: "sato@example.com" },
 };
 
-export default async function UserPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function UserPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
-  // TODO: ここで id が有効かチェックし、無効なら notFound() を呼ぶ
+  if (id !== "1" && id !== "2" && id !== "3") return notFound();
 
   const user = users[id];
 
