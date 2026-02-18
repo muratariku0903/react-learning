@@ -39,6 +39,38 @@ export default function Home() {
           </li>
         </ul>
       </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          Layer 2: データフェッチ
+        </h2>
+        <ul className="space-y-2">
+          <li>
+            <Link
+              href="/exercises/layer02-data-fetch/01-server-data-fetch"
+              className="text-blue-600 hover:underline"
+            >
+              演習2-1: Server Side Data Fetch
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/exercises/layer02-data-fetch/02-streaming-suspense"
+              className="text-blue-600 hover:underline"
+            >
+              演習2-2: Streaming / Suspense
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/exercises/layer02-data-fetch/03-client-data-fetch"
+              className="text-blue-600 hover:underline"
+            >
+              演習2-3: Client側データフェッチ（TanStack Query / SWR）
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
