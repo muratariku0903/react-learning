@@ -1,17 +1,32 @@
-// TODO: next: { revalidate: 10 } を使って投稿一覧を取得し、時間ベースの再検証を確認する
-// ヒント:
-//   - async コンポーネントとして定義する
-//   - fetch() の第2引数に { next: { revalidate: 10 } } を指定する
-//   - 取得時刻を表示して、10秒以内と10秒以降のリロードで時刻の変化を比較する
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
 
-export default function RevalidatePage() {
+export default async function RevalidatePage() {
+  const { posts, date } = (await fetch("https://jsonplaceholder.typicode.com/posts", {
+    next: { revalidate: 10 },
+  }).then(async (e) => {
+    return { posts: await e.json(), date: e.headers.get("date") };
+  })) as { posts: Post[]; date: string };
+
+  const slicedPosts = posts.slice(0, 5);
+
   return (
     <div className="p-8 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-2">revalidate</h1>
       <p className="text-zinc-500 mb-4">10秒ごとに再検証（ISR相当）</p>
 
-      {/* TODO: ここにデータ取得時刻と投稿一覧を表示する */}
-      <p className="text-red-500">未実装: fetch() でデータを取得してください</p>
+      <p>fetch()データ取得日時：{date}</p>
+      <br />
+
+      {slicedPosts.map((post) => (
+        <p key={post.id}>
+          {post.id} : {post.title}
+        </p>
+      ))}
     </div>
   );
 }
