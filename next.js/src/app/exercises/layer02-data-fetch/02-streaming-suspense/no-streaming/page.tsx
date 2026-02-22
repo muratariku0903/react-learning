@@ -1,18 +1,33 @@
-// TODO: Suspense を使わずに3つのデータ取得を直列に await する
-// ヒント:
-//   - async コンポーネントとして定義
-//   - fetchUserInfo, fetchPosts, fetchComments をすべて await で順番に呼ぶ
-//   - 結果: 全データ取得完了（約6.5秒）まで何も表示されない
+import { fetchComments, fetchPosts, fetchUserInfo } from "../_lib/data";
 
-export default function NoStreamingPage() {
+export default async function NoStreamingPage() {
+  const user = await fetchUserInfo();
+  const posts = await fetchPosts();
+  const comments = await fetchComments();
+
   return (
     <div className="p-8 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Suspense なし</h1>
 
-      {/* TODO: ユーザー情報セクション */}
-      {/* TODO: 投稿一覧セクション */}
-      {/* TODO: コメント一覧セクション */}
-      <p className="text-red-500">未実装: 3つのデータを取得して表示してください</p>
+      <p>
+        {user.name} {user.email} {user.role}
+      </p>
+
+      <ul>
+        {posts.map((p) => (
+          <li key={p.id}>
+            {p.title} {p.summary}
+          </li>
+        ))}
+      </ul>
+
+      <ul>
+        {comments.map((c) => (
+          <li key={c.id}>
+            {c.text} {c.author}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
