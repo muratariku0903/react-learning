@@ -9,11 +9,11 @@ export default function ClientDataFetchPage() {
         演習2-3: Client側データフェッチ
       </h1>
       <p className="text-zinc-500 mb-6">
-        Server fetch / SWR / TanStack Query の3手法を比較する
+        Server fetch / React use / SWR / TanStack Query の4手法を比較する
       </p>
 
       <section className="mb-8">
-        <h2 className="text-lg font-semibold mb-3">3パターン比較</h2>
+        <h2 className="text-lg font-semibold mb-3">4パターン比較</h2>
         <ul className="space-y-2">
           <li>
             <Link
@@ -21,6 +21,14 @@ export default function ClientDataFetchPage() {
               className="text-blue-600 hover:underline"
             >
               Server Component の fetch()（ベースライン）
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={`${basePath}/with-use`}
+              className="text-blue-600 hover:underline"
+            >
+              React use API（Server → Client の Promise パターン）
             </Link>
           </li>
           <li>

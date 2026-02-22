@@ -66,7 +66,7 @@ export default function Home() {
               href="/exercises/layer02-data-fetch/03-client-data-fetch"
               className="text-blue-600 hover:underline"
             >
-              演習2-3: Client側データフェッチ（TanStack Query / SWR）
+              演習2-3: Client側データフェッチ（React use / TanStack Query / SWR）
             </Link>
           </li>
         </ul>

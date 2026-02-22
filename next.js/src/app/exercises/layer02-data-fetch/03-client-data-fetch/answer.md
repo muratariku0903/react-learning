@@ -5,6 +5,7 @@
 | 手法 | どんな場面で使う？ | メリット | デメリット |
 |------|------------------|---------|-----------|
 | Server Component の `fetch()` | | | |
+| React `use` API | | | |
 | SWR (`useSWR`) | | | |
 | TanStack Query (`useQuery`) | | | |
 
@@ -29,4 +30,23 @@
 
 
 **App Router での Provider の配置場所と理由:**
+
+
+---
+
+## Q4: React `use` API の特徴
+
+**`use` は何を受け取って、何を返すか（Promise の場合）:**
+
+
+**`use` は何を受け取って、何を返すか（Context の場合）:**
+
+
+**`use(promise)` 使用時のコンポーネントの振る舞い（Suspense との関係）:**
+
+
+**SWR / TanStack Query と比べて `use` API だけではできないこと:**
+
+
+**Server Component → Client Component に Promise を渡すパターンが有効な場面:**
 
