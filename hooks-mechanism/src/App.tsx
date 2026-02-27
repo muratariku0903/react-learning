@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/use/promise-and-suspense/App";
+import ExerciseApp from "./exercises/use/context-reading/App";
 
 export default function App() {
   return <ExerciseApp />;

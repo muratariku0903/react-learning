@@ -1,18 +1,19 @@
-import { createContext, useState } from "react";
+import { createContext, useState, use } from "react";
 
 // --- Context定義 ---
 const ThemeContext = createContext<"light" | "dark">("light");
 const LocaleContext = createContext<"ja" | "en">("ja");
 
-// --- TODO: use フックを使って条件付きでContextを読み取るコンポーネント ---
 function UserGreeting({ isLoggedIn }: { isLoggedIn: boolean }) {
-  // TODO: isLoggedIn が false の場合はContextを読み取らずに早期リターンする
-  // TODO: isLoggedIn が true の場合のみ use(ThemeContext) と use(LocaleContext) を呼び出す
-  // TODO: テーマに応じたスタイルと、ロケールに応じた挨拶メッセージを表示する
+  if (!isLoggedIn) return <p>コンテキストは読み取りません</p>;
+
+  const theme = use(ThemeContext);
+  const locale = use(LocaleContext);
 
   return (
     <div>
-      <p>ここに条件付きContext読み取りを実装してください</p>
+      <p>theme: {theme}</p>
+      <p>locale: {locale}</p>
     </div>
   );
 }
