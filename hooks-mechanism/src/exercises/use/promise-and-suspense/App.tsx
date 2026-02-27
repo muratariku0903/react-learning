@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 
 // --- ダミーデータ ---
 type User = {
@@ -25,22 +25,29 @@ const usersPromise = fetchUsers();
 
 // --- TODO: use フックを使ってユーザー一覧を表示するコンポーネントを実装 ---
 function UserList() {
-  // TODO: use(usersPromise) でデータを取得する
-  // TODO: 取得したデータをリスト表示する
+  const users = use(usersPromise);
+
   return (
     <div>
       <p>ここにユーザー一覧を表示してください</p>
+      <ul>
+        {users.map((e) => (
+          <li key={e.id}>
+            {e.name} {e.email}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-// --- TODO: Suspenseを適切に配置してください ---
 export default function App() {
   return (
     <div style={{ padding: "20px" }}>
       <h2>ユーザー一覧</h2>
-      {/* TODO: <Suspense>でUserListを囲み、fallbackを設定する */}
-      <UserList />
+      <Suspense fallback={<div>loading...</div>}>
+        <UserList />
+      </Suspense>
     </div>
   );
 }

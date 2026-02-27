@@ -1,0 +1,2 @@
+UserListコンポーネントでuseを実行、定義済みのPromiseを受け取る
+UserListコンポーネントをSuspenseでラップし、fallbackでローディングコンポーネントを指定する。

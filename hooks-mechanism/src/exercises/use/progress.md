@@ -2,6 +2,6 @@
 
 ## サブトピック一覧
 
-- [ ] promise-and-suspense
+- [x] promise-and-suspense
 - [ ] context-reading
 - [ ] practical-patterns
