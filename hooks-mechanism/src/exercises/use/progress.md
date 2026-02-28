@@ -4,4 +4,4 @@
 
 - [x] promise-and-suspense
 - [x] context-reading
-- [ ] practical-patterns
+- [x] practical-patterns

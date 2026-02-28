@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense, useState, use } from "react";
 
 // --- ダミーデータ ---
 type Post = {
@@ -10,7 +10,11 @@ type Post = {
 const DUMMY_POSTS: Post[] = [
   { id: 1, title: "Reactの基礎", body: "Reactはコンポーネントベースのライブラリです。" },
   { id: 2, title: "use フックとは", body: "React 19で導入された新しいAPIです。" },
-  { id: 3, title: "Suspenseの活用", body: "非同期処理のローディング状態を宣言的に扱えます。" },
+  {
+    id: 3,
+    title: "Suspenseの活用",
+    body: "非同期処理のローディング状態を宣言的に扱えます。",
+  },
 ];
 
 // データ取得関数（1.5秒の遅延）
@@ -21,17 +25,10 @@ function fetchPosts(): Promise<Post[]> {
   });
 }
 
-/**
- * ❌ アンチパターン：レンダーのたびに新しいPromiseを生成している
- *
- * このコンポーネントには問題があります。
- * ブラウザのコンソールを確認して、何が起きているか把握してください。
- * その後、正しいパターンに修正してください。
- */
-function PostList() {
-  // 問題: レンダーのたびに fetchPosts() が呼ばれ、新しいPromiseが生成される
-  const posts: Post[] = []; // TODO: use を使って正しくデータを取得する
+const fetchPostsPromise = fetchPosts();
 
+function PostList() {
+  const posts: Post[] = use(fetchPostsPromise);
   return (
     <ul>
       {posts.map((post) => (
@@ -55,8 +52,9 @@ export default function App() {
       </button>
 
       {showPosts && (
-        // TODO: Suspenseの配置を見直す必要があるかもしれません
-        <PostList />
+        <Suspense fallback={<div>loading...</div>}>
+          <PostList />
+        </Suspense>
       )}
     </div>
   );

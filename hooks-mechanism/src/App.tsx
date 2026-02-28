@@ -1,4 +1,4 @@
-import ExerciseApp from "./exercises/use/context-reading/App";
+import ExerciseApp from "./exercises/use/practical-patterns/App";
 
 export default function App() {
   return <ExerciseApp />;
