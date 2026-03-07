@@ -1,5 +1,3 @@
-// TODO: React の use API を使ってデータを取得する
-//
 // このパターンの流れ:
 //   1. Server Component (このファイル) で fetch() を呼ぶが、await しない → Promise のまま保持
 //   2. その Promise を Client Component に props として渡す
@@ -13,16 +11,12 @@
 //   - Client Component は "use client" が必要
 
 import { Suspense } from "react";
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+import SearchResult from "../components/SearchResult";
 
 export default function WithUsePage() {
-  // TODO: fetch() を呼ぶが await しない → Promise<Post[]> を取得
-  // const postsPromise = fetch(...)...
+  const promise = fetch("https://jsonplaceholder.typicode.com/posts?_limit=5", {
+    cache: "no-store",
+  }).then((data) => data.json());
 
   return (
     <div className="p-8 max-w-3xl mx-auto">
@@ -31,9 +25,9 @@ export default function WithUsePage() {
         Server Component で Promise を作成し、Client Component で use() で読み取る
       </p>
 
-      {/* TODO: Suspense で囲み、fallback にローディング表示を設定 */}
-      {/* TODO: Client Component に postsPromise を渡す */}
-      <p className="text-red-500">未実装: use API でデータを取得してください</p>
+      <Suspense fallback={<div>loading...</div>}>
+        <SearchResult postsPromise={promise} />
+      </Suspense>
     </div>
   );
 }

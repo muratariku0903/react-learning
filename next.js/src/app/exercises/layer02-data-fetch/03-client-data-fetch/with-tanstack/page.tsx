@@ -1,9 +1,10 @@
-// TODO: TanStack Query (useQuery) を使ってクライアント側でデータを取得する
 // ヒント:
 //   - "use client" が必要
 //   - QueryClientProvider のセットアップが必要（layout.tsx で囲むパターンが一般的）
 //   - useQuery({ queryKey: ['posts'], queryFn: ... }) の形で使う
 //   - isPending, error, data を使って表示を分岐
+
+import { SearchResultWithQuery } from "../components/SearchResultWithQuery";
 
 export default function WithTanstackPage() {
   return (
@@ -13,8 +14,7 @@ export default function WithTanstackPage() {
         クライアント側でデータを取得（強力なキャッシュ管理）
       </p>
 
-      {/* TODO: useQuery でデータを取得し、投稿一覧を表示する */}
-      <p className="text-red-500">未実装: useQuery でデータを取得してください</p>
+      <SearchResultWithQuery />
     </div>
   );
 }

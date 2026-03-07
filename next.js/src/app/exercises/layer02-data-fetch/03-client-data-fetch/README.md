@@ -70,8 +70,10 @@ exercises/layer02-data-fetch/03-client-data-fetch/
 │   └── page.tsx          → TODO: SWR でデータ取得
 ├── with-tanstack/
 │   └── page.tsx          → TODO: TanStack Query でデータ取得
+├── search-basic/
+│   └── page.tsx          → TODO: 検索付き一覧（useState + useEffect）← まずこちら
 └── search/
-    └── page.tsx          → TODO: 検索付き一覧ページ
+    └── page.tsx          → TODO: 検索付き一覧（SWR + 探索クエリ）
 ```
 
 ### 要件
@@ -95,11 +97,25 @@ exercises/layer02-data-fetch/03-client-data-fetch/
    - `QueryClientProvider` のセットアップが必要（配置場所を設計で考えること）
    - ローディング状態とエラー状態のハンドリングを行う
 
-5. **search/page.tsx を実装**
+5. **search-basic/page.tsx を実装**（← まずこちらから）
+   - **SWR や探索クエリ（searchParams）は使わず**、`useState` + `useEffect` だけで検索付きの投稿一覧ページを作成する
+   - テキスト入力で検索キーワードを入力すると、APIにクエリパラメータを付けて再取得する
+   - API: `https://jsonplaceholder.typicode.com/posts?_limit=10&q={検索キーワード}`
+   - `useState` でキーワード・データ・ローディング・エラーの各状態を自分で管理する
+   - ローディング中・エラー時・データ表示の3状態をハンドリングする
+   - **実装後に以下を考えてみること:**
+     - URL にキーワードが含まれないため、検索結果を他の人に共有できるか？
+     - ページをリロードしたら検索状態はどうなるか？
+     - キャッシュの仕組みがないことで、同じキーワードの再検索時にどんな無駄が発生するか？
+     - キーワードを入力するたびに毎回 fetch が走ることにどう対処するか？
+
+6. **search/page.tsx を実装**（search-basic を体験した後に取り組む）
    - SWR または TanStack Query を使って検索付きの投稿一覧ページを作成
+   - **探索クエリ（searchParams）を使って、URLにキーワードを含める**
    - テキスト入力で検索キーワードを入力すると、APIにクエリパラメータを付けて再取得する
    - API: `https://jsonplaceholder.typicode.com/posts?_limit=10&q={検索キーワード}` ※JSONPlaceholderはqパラメータで全文検索が可能
    - 検索中のローディング表示を行う
+   - search-basic で感じた課題が、SWR + 探索クエリでどう解消されるかを体感する
 
 ### ヒント
 - **React `use` API**: `use(promise)` は Promise を受け取り、解決された値を返す。コンポーネントは Promise が解決するまで suspend する（= Suspense が必要）
@@ -107,4 +123,6 @@ exercises/layer02-data-fetch/03-client-data-fetch/
 - SWR は `useSWR(key, fetcher)` の形で使う。fetcher は `(url) => fetch(url).then(res => res.json())` のようなシンプルな関数
 - TanStack Query は `useQuery({ queryKey: [...], queryFn: ... })` の形で使う
 - TanStack Query の `QueryClientProvider` は Client Component 内に配置する必要がある（layout.tsx で囲むパターンが一般的）
+- search-basic では `useState` と `useEffect` だけで実装する。`useEffect` の依存配列にキーワードを入れれば、キーワード変更時に自動で再取得される
+- search-basic を実装した後、search では SWR のキーにキーワードを含めるだけで自動再取得される便利さを比較体感する
 - 検索ページでは、検索キーワードを `useState` で管理し、SWR/TanStack Query のキーに含めることで自動再取得される

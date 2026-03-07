@@ -55,10 +55,18 @@ export default function ClientDataFetchPage() {
         <ul className="space-y-2">
           <li>
             <Link
+              href={`${basePath}/search-basic`}
+              className="text-blue-600 hover:underline"
+            >
+              検索付き一覧（useState + useEffect）← まずこちらから
+            </Link>
+          </li>
+          <li>
+            <Link
               href={`${basePath}/search`}
               className="text-blue-600 hover:underline"
             >
-              検索付き一覧ページ
+              検索付き一覧（SWR + 探索クエリ）
             </Link>
           </li>
         </ul>

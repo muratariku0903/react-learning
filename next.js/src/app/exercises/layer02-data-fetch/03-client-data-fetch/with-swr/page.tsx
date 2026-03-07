@@ -1,9 +1,10 @@
-// TODO: SWR (useSWR) を使ってクライアント側でデータを取得する
 // ヒント:
 //   - "use client" が必要
 //   - useSWR(key, fetcher) の形で使う
 //   - fetcher: (url: string) => fetch(url).then(res => res.json())
 //   - data, error, isLoading を使ってローディング/エラー/データ表示を分岐
+
+import { SearchResultSWR } from "../components/SearchResultWithSWR";
 
 export default function WithSWRPage() {
   return (
@@ -13,8 +14,7 @@ export default function WithSWRPage() {
         クライアント側でデータを取得（stale-while-revalidate）
       </p>
 
-      {/* TODO: useSWR でデータを取得し、投稿一覧を表示する */}
-      <p className="text-red-500">未実装: useSWR でデータを取得してください</p>
+      <SearchResultSWR />
     </div>
   );
 }
