@@ -33,3 +33,19 @@
 
 **どちらを使うべきかの判断基準:**
 
+
+---
+
+## Q4: Edge Runtime と Node Runtime
+
+**それぞれの実行環境はどこで動くか:**
+
+
+**Edge Runtime で使えない Node.js API:**
+
+
+**Edge Runtime が向いている API・向いていない API:**
+
+
+**コールドスタートの速度差の理由:**
+

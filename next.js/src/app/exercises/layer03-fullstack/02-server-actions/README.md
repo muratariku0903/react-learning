@@ -48,6 +48,14 @@ React 19 / Next.js では、`<form action={serverAction}>` のように form の
 - 演習3-1 のメモ帳で行ったような CRUD 操作を Server Actions で実装する場合、何が変わるか？
 - Route Handlers で実装すべきケースと Server Actions で実装すべきケースを、具体例を挙げて説明せよ
 
+### Q5: Server Actions のセキュリティ
+`"use server"` を付けた関数について、セキュリティの観点で以下を説明せよ:
+
+- Server Actions は裏側でどのような HTTP エンドポイントを生成するか？
+- そのエンドポイントは、自アプリのフォーム以外から（例: curl やブラウザの DevTools から）呼び出せるか？
+- 上記を踏まえると、Server Actions 内でのバリデーションや認証チェックはどの程度重要か？
+- 「フォームからしか呼ばれないから入力チェックは不要」という考え方は正しいか？ その理由は？
+
 ---
 
 ## 実装演習（design.md に設計を書いてから実装）
@@ -66,7 +74,8 @@ exercises/layer03-fullstack/02-server-actions/
 └── components/
     ├── TodoList.tsx         → Todo 一覧表示（Client Component）
     ├── AddTodoForm.tsx      → Todo 追加フォーム（Client Component）
-    └── TodoItem.tsx         → 個別 Todo アイテム（Client Component）
+    ├── TodoItem.tsx         → 個別 Todo アイテム（Client Component）
+    └── SubmitButton.tsx     → 送信ボタン（useFormStatus を使用）
 ```
 
 ### 要件
@@ -87,7 +96,8 @@ exercises/layer03-fullstack/02-server-actions/
 3. **Todo 追加フォーム（`AddTodoForm.tsx`）を実装**
    - `<form action={...}>` で Server Action と連携する
    - `useActionState` で送信中の状態とバリデーションエラーを管理する
-   - 送信中はボタンを無効化する
+   - **送信ボタンは `SubmitButton` として別コンポーネントに切り出す**
+   - `SubmitButton` 内で `useFormStatus` を使い、送信中はボタンを無効化+テキスト変更する
    - バリデーションエラーがある場合はエラーメッセージを表示する
 
 4. **Todo 一覧と個別アイテムを実装**
@@ -105,4 +115,7 @@ exercises/layer03-fullstack/02-server-actions/
 - `revalidatePath('/exercises/layer03-fullstack/02-server-actions')` でページのキャッシュを無効化する
 - `useActionState` は `const [state, formAction, isPending] = useActionState(action, initialState)` の形で使う
 - `useOptimistic` は `const [optimisticTodos, addOptimistic] = useOptimistic(todos, updateFn)` の形で使う
+- `useFormStatus` は `react-dom` からインポートする。**form の子コンポーネント内**でのみ動作する（form と同じコンポーネントでは動かない）
+- `const { pending } = useFormStatus()` で送信中かどうかを取得できる
+- `useActionState` の `isPending` と `useFormStatus` の `pending` の違い: 前者はそのフォーム専用、後者は汎用ボタンコンポーネントとして使い回せる
 - `zod` のバリデーション: `z.string().min(1, "タイトルは必須です").max(100, "タイトルは100文字以内で入力してください")`
