@@ -71,6 +71,30 @@ export default function Home() {
           </li>
         </ul>
       </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          Layer 3: フルスタック機能
+        </h2>
+        <ul className="space-y-2">
+          <li>
+            <Link
+              href="/exercises/layer03-fullstack/01-route-handlers"
+              className="text-blue-600 hover:underline"
+            >
+              演習3-1: Route Handlers
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/exercises/layer03-fullstack/02-server-actions"
+              className="text-blue-600 hover:underline"
+            >
+              演習3-2: Server Actions
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
