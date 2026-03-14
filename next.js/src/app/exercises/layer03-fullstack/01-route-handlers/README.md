@@ -7,7 +7,7 @@ Server Actions との使い分けを判断できるようになる。
 
 ---
 
-## 言語化演習（answer.md に回答を記入）
+## 言語化演習（answer.md に回答を記入）　
 
 ### Q1: Route Handlers と Server Actions の使い分け
 Route Handlers と Server Actions はどちらもサーバー側でロジックを実行できる。
