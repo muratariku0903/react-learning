@@ -1,7 +1,10 @@
 // 演習3-2: Server Actions
 // このページは Todo アプリのメインページ。
 // Server Component としてデータを取得し、Client Component に渡す。
-// TODO: Server Actions とデータストアの実装後に構築する。
+
+import { todos } from "./_lib/store";
+import { AddTodoForm } from "./components/AddTodoForm";
+import { TodoList } from "./components/TodoList";
 
 export default function ServerActionsPage() {
   return (
@@ -11,9 +14,8 @@ export default function ServerActionsPage() {
         Server Actions で Todo アプリを実装（フォーム連携・Optimistic UI・バリデーション）
       </p>
 
-      <p className="text-red-500">
-        未実装: まず _actions/todo.ts と _lib/store.ts を実装してから、このページを構築してください
-      </p>
+      <AddTodoForm />
+      <TodoList todos={todos} />
     </div>
   );
 }
