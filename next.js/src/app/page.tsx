@@ -95,6 +95,22 @@ export default function Home() {
           </li>
         </ul>
       </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          Layer 4: レンダリング戦略
+        </h2>
+        <ul className="space-y-2">
+          <li>
+            <Link
+              href="/exercises/layer04-rendering/01-rendering-strategies"
+              className="text-blue-600 hover:underline"
+            >
+              演習4-1: レンダリング戦略の比較
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
