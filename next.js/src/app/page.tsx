@@ -111,6 +111,30 @@ export default function Home() {
           </li>
         </ul>
       </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          Layer 5: パフォーマンス最適化
+        </h2>
+        <ul className="space-y-2">
+          <li>
+            <Link
+              href="/exercises/layer05-performance/01-image-font-optimization"
+              className="text-blue-600 hover:underline"
+            >
+              演習5-1: 画像・フォント最適化
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/exercises/layer05-performance/02-code-splitting-dynamic-import"
+              className="text-blue-600 hover:underline"
+            >
+              演習5-2: Code Splitting & Dynamic Import
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
