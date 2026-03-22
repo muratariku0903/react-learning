@@ -2,4 +2,4 @@
 
 ## サブトピック一覧
 
-- [ ] 01-rendering-strategies（SSR / SSG / ISR / CSR の比較、使い分け判断、SEO・コストの観点）
+- [x] 01-rendering-strategies（SSR / SSG / ISR / CSR の比較、使い分け判断、SEO・コストの観点）

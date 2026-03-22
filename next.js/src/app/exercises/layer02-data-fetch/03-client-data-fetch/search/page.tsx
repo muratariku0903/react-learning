@@ -5,6 +5,7 @@
 //   - SWR/TanStack Query のキーに検索キーワードを含めると、キーワード変更時に自動で再取得される
 //   - API: https://jsonplaceholder.typicode.com/posts?_limit=10&q={keyword}
 
+import { Suspense } from "react";
 import { SearchResultSWRWithSearchParams } from "../components/SearchResultWithSWR";
 
 export default function SearchPage() {
@@ -15,7 +16,9 @@ export default function SearchPage() {
         キーワードで投稿を検索（クライアント側データ取得）
       </p>
 
-      <SearchResultSWRWithSearchParams />
+      <Suspense>
+        <SearchResultSWRWithSearchParams />
+      </Suspense>
     </div>
   );
 }
