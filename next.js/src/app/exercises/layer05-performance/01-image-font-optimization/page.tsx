@@ -1,7 +1,12 @@
 import Image from "next/image";
 
-// TODO: next/font/google からフォントをインポートして設定する
-// import { ... } from "next/font/google";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700"],
+});
 
 export default function ImageFontOptimizationPage() {
   return (
@@ -76,18 +81,18 @@ export default function ImageFontOptimizationPage() {
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-6 border-b pb-2">フォント最適化</h2>
 
-        {/* TODO: next/font で読み込んだフォントを適用する */}
         <div className="space-y-4">
           <p className="text-zinc-500">
             next/font/google からフォントを読み込み、このセクションに適用してください。
           </p>
-          <div className="bg-zinc-50 p-6 rounded-lg border">
-            <p className="text-lg mb-2">
-              {/* TODO: フォントウェイト 400 のサンプルテキスト */}
+          <div className="bg-zinc-50 p-6 rounded-lg border ">
+            <p className={"text-lg text-black mb-2 "}>
               Regular (400): The quick brown fox jumps over the lazy dog
             </p>
-            <p className="text-lg font-bold">
-              {/* TODO: フォントウェイト 700 のサンプルテキスト */}
+            <p className={"text-lg text-black mb-2 " + inter.className}>
+              Regular (400): The quick brown fox jumps over the lazy dog
+            </p>
+            <p className={"text-lg text-black font-bold " + inter.className}>
               Bold (700): The quick brown fox jumps over the lazy dog
             </p>
           </div>
