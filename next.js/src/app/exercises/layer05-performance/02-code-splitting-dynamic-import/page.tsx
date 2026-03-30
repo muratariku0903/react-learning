@@ -2,19 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-// TODO: next/dynamic をインポートする
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 
-// TODO: HeavyComponent を dynamic() で遅延読み込みする
-// const HeavyComponent = dynamic(() => import("./components/HeavyComponent"), {
-//   loading: () => <p>Loading...</p>,
-// });
+const HeavyComponent = dynamic(() => import("./components/HeavyComponent"), {
+  loading: () => <p>Loading...</p>,
+});
 
-// TODO: BrowserOnlyComponent を dynamic() + ssr: false で読み込む
-// const BrowserOnlyComponent = dynamic(
-//   () => import("./components/BrowserOnlyComponent"),
-//   { ssr: false }
-// );
+const BrowserOnlyComponent = dynamic(() => import("./components/BrowserOnlyComponent"), {
+  ssr: false,
+  // ssr: true,
+});
 
 export default function CodeSplittingPage() {
   const [showHeavy, setShowHeavy] = useState(false);
@@ -24,9 +21,7 @@ export default function CodeSplittingPage() {
       <h1 className="text-3xl font-bold mb-2">
         演習5-2: Code Splitting & Dynamic Import
       </h1>
-      <p className="text-zinc-500 mb-8">
-        遅延読み込みとPrefetchの仕組みを体験する
-      </p>
+      <p className="text-zinc-500 mb-8">遅延読み込みとPrefetchの仕組みを体験する</p>
 
       {/* ===== Dynamic Import セクション ===== */}
       <section className="mb-12">
@@ -41,8 +36,8 @@ export default function CodeSplittingPage() {
               条件付き読み込み（ボタンクリックで表示）
             </h3>
             <p className="text-sm text-zinc-500 mb-4">
-              ボタンをクリックすると HeavyComponent が読み込まれます。
-              DevTools の Network タブで新しい JS チャンクを確認してください。
+              ボタンをクリックすると HeavyComponent が読み込まれます。 DevTools の Network
+              タブで新しい JS チャンクを確認してください。
             </p>
             <button
               onClick={() => setShowHeavy(!showHeavy)}
@@ -53,10 +48,7 @@ export default function CodeSplittingPage() {
 
             {showHeavy && (
               <div className="mt-4 p-4 border rounded-lg bg-white">
-                {/* TODO: HeavyComponent をここに表示する */}
-                <p className="text-zinc-400">
-                  HeavyComponent を dynamic() で読み込んでここに表示してください
-                </p>
+                <HeavyComponent />
               </div>
             )}
           </div>
@@ -67,15 +59,11 @@ export default function CodeSplittingPage() {
               SSR 無効化（ブラウザ専用コンポーネント）
             </h3>
             <p className="text-sm text-zinc-500 mb-4">
-              window や navigator などブラウザ専用 API を使うコンポーネントを
-              ssr: false で読み込みます。
+              window や navigator などブラウザ専用 API を使うコンポーネントを ssr: false
+              で読み込みます。
             </p>
-            {/* TODO: BrowserOnlyComponent をここに表示する */}
             <div className="p-4 border rounded-lg bg-white">
-              <p className="text-zinc-400">
-                BrowserOnlyComponent を dynamic() + ssr: false
-                で読み込んでここに表示してください
-              </p>
+              <BrowserOnlyComponent />
             </div>
           </div>
         </div>
@@ -88,8 +76,8 @@ export default function CodeSplittingPage() {
         </h2>
 
         <p className="text-sm text-zinc-500 mb-6">
-          DevTools の Network タブを開いた状態でページをリロードし、
-          各リンクの Prefetch 挙動の違いを確認してください。
+          DevTools の Network タブを開いた状態でページをリロードし、 各リンクの Prefetch
+          挙動の違いを確認してください。
         </p>
 
         <div className="space-y-4">
@@ -108,12 +96,12 @@ export default function CodeSplittingPage() {
 
           {/* --- 明示的にオン --- */}
           <div className="p-4 border rounded-lg">
-            {/* TODO: prefetch={true} を設定する */}
             <Link
-              href="/exercises/layer04-rendering/01-rendering-strategies"
+              href="/exercises/layer05-performance/01-image-font-optimization"
+              prefetch={true}
               className="text-blue-600 hover:underline"
             >
-              演習4-1へ（prefetch: true）
+              演習5-1へ（prefetch: true）
             </Link>
             <p className="text-sm text-zinc-500 mt-1">
               明示的オン: フルルートが事前取得される
@@ -123,14 +111,41 @@ export default function CodeSplittingPage() {
           {/* --- オフ --- */}
           <div className="p-4 border rounded-lg">
             <Link
-              href="/exercises/layer03-fullstack/02-server-actions"
+              href="/exercises/layer05-performance/01-image-font-optimization"
               prefetch={false}
               className="text-blue-600 hover:underline"
             >
-              演習3-2へ（prefetch: false）
+              演習5-1へ（prefetch: false）
             </Link>
             <p className="text-sm text-zinc-500 mt-1">
               オフ: クリック時にのみ取得される（事前取得なし）
+            </p>
+          </div>
+
+          {/* --- デフォルト --- */}
+          <div className="p-4 border rounded-lg">
+            <Link
+              href="/exercises/layer04-rendering/01-rendering-strategies/pages/ssr"
+              className="text-blue-600 hover:underline"
+            >
+              演習4-1へ（prefetch: デフォルト）
+            </Link>
+            <p className="text-sm text-zinc-500 mt-1">
+              デフォルト: ビューポートに入ると自動的に Prefetch される
+            </p>
+          </div>
+
+          {/* --- 明示的にオン --- */}
+          <div className="p-4 border rounded-lg">
+            <Link
+              href="/exercises/layer04-rendering/01-rendering-strategies/pages/ssr"
+              prefetch={true}
+              className="text-blue-600 hover:underline"
+            >
+              演習4-1へ（prefetch: true）
+            </Link>
+            <p className="text-sm text-zinc-500 mt-1">
+              明示的オン: フルルートが事前取得される
             </p>
           </div>
         </div>
@@ -138,13 +153,12 @@ export default function CodeSplittingPage() {
 
       {/* ===== 確認チェックリスト ===== */}
       <section>
-        <h2 className="text-2xl font-semibold mb-4 border-b pb-2">
-          確認チェックリスト
-        </h2>
+        <h2 className="text-2xl font-semibold mb-4 border-b pb-2">確認チェックリスト</h2>
         <ul className="space-y-2 text-zinc-600">
           <li>
             <input type="checkbox" className="mr-2" />
-            HeavyComponent がボタンクリック時に JS チャンクとして読み込まれることを確認した
+            HeavyComponent がボタンクリック時に JS
+            チャンクとして読み込まれることを確認した
           </li>
           <li>
             <input type="checkbox" className="mr-2" />
