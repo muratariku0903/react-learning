@@ -135,6 +135,30 @@ export default function Home() {
           </li>
         </ul>
       </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          Layer 6: 認証・セッション管理
+        </h2>
+        <ul className="space-y-2">
+          <li>
+            <Link
+              href="/exercises/layer06-auth/01-cookie-jwt"
+              className="text-blue-600 hover:underline"
+            >
+              演習6-1: Cookie & JWT
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/exercises/layer06-auth/02-middleware-auth-gate"
+              className="text-blue-600 hover:underline"
+            >
+              演習6-2: Middleware 認証ゲート
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
