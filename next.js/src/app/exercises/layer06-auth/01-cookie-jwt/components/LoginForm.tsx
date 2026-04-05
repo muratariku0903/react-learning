@@ -1,13 +1,19 @@
-// TODO: ログインフォームを実装する（Client Component）
-//
-// 要件:
-// - "use client" を宣言
-// - useActionState を使って login Server Action を呼び出す
-// - メールアドレスとパスワードの入力欄を配置
-// - エラーメッセージを表示する
-// - 送信中の状態を表示する（useActionState の pending 状態）
-//
-// ヒント:
-// - import { useActionState } from "react"
-// - import { login } from "../_lib/actions"
-// - const [state, formAction, isPending] = useActionState(login, undefined)
+"use client";
+
+import { useActionState } from "react";
+import { login } from "../_lib/actions";
+
+export const LoginForm = () => {
+  const [state, formAction, isPending] = useActionState(login, undefined);
+
+  return (
+    <form action={formAction}>
+      <input type="email" name="email" />
+      <input type="password" name="password" />
+      {state && <p>{state}</p>}
+      <button type="submit" disabled={isPending}>
+        {isPending ? "送信中..." : "ログイン"}
+      </button>
+    </form>
+  );
+};
