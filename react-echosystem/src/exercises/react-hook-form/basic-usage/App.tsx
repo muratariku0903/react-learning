@@ -11,6 +11,7 @@ type FormValues = {
 
 export default function App() {
   // TODO: useForm の設定を完成させてください（mode, defaultValues 等）
+  console.log('app render')
   const {
     register,
     control,
