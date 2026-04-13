@@ -1,16 +1,20 @@
 import { useForm, FormProvider, useFieldArray } from "react-hook-form";
 import { ItemRow } from "./components/ItemRow";
+import { Sum } from "./components/Sum";
 
-type Option = { label: string; extraPrice: number };
+export type Option = { label: string; extraPrice: number };
 type Item = { name: string; quantity: number; options: Option[] };
-type FormValues = { items: Item[] };
+export type FormValues = { items: Item[] };
 
 const emptyItem: Item = { name: "", quantity: 1, options: [] };
 
 export default function App() {
+  console.log("App rendering");
+
   const methods = useForm<FormValues>({
     defaultValues: { items: [emptyItem] },
-    mode: "onChange",
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
   });
 
   const { control, handleSubmit } = methods;
@@ -21,8 +25,15 @@ export default function App() {
   });
 
   const onSubmit = (data: FormValues) => {
-    // TODO: 合計金額を計算して console.log する
     console.log("submit:", data);
+
+    let sum = 0;
+    for (const { quantity, options } of data.items) {
+      const unitPrice = 100 + options.reduce((acc, curr) => acc + curr.extraPrice, 0);
+      sum += unitPrice * quantity;
+    }
+
+    console.log("合計", sum);
   };
 
   return (
@@ -36,9 +47,7 @@ export default function App() {
               nestIndex={index}
               onRemove={() => remove(index)}
               onMoveUp={() => index > 0 && swap(index, index - 1)}
-              onMoveDown={() =>
-                index < fields.length - 1 && swap(index, index + 1)
-              }
+              onMoveDown={() => index < fields.length - 1 && swap(index, index + 1)}
             />
           ))}
 
@@ -50,6 +59,9 @@ export default function App() {
             <button type="submit">注文する</button>
           </div>
         </form>
+
+        <br />
+        <Sum />
       </div>
     </FormProvider>
   );
