@@ -1,5 +1,5 @@
 // 演習を切り替えるには、下記のimportパスを変更してください
-import ExerciseApp from "./exercises/react-hook-form/nested-field-array/App";
+import ExerciseApp from "./exercises/react-hook-form/multi-step-wizard/App";
 
 export default function App() {
   return (

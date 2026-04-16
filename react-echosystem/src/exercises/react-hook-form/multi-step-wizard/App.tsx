@@ -18,13 +18,12 @@ export default function App() {
   const methods = useForm<FormValues>({
     defaultValues,
     mode: "onChange",
-    // TODO: shouldUnregister をどう設定するか考える
+    shouldUnregister: false,
   });
 
   const handleNext = async () => {
-    // TODO: 現在ステップのフィールドだけ trigger で部分バリデーション
-    // const ok = await methods.trigger(STEP_FIELDS[currentStep]);
-    // if (!ok) return;
+    const ok = await methods.trigger(STEP_FIELDS[currentStep]);
+    if (!ok) return;
     setCurrentStep((s) => s + 1);
   };
 
@@ -33,9 +32,6 @@ export default function App() {
   const onSubmit = (data: FormValues) => {
     console.log("最終送信:", data);
   };
-
-  // STEP_FIELDS は今は読まれていないので参照だけしておく
-  void STEP_FIELDS;
 
   return (
     <FormProvider {...methods}>
@@ -49,10 +45,14 @@ export default function App() {
 
           <div style={{ marginTop: 16, display: "flex", gap: 8 }}>
             {currentStep > 1 && (
-              <button type="button" onClick={handleBack}>戻る</button>
+              <button type="button" onClick={handleBack}>
+                戻る
+              </button>
             )}
             {currentStep < 4 && (
-              <button type="button" onClick={handleNext}>次へ</button>
+              <button type="button" onClick={handleNext}>
+                次へ
+              </button>
             )}
             {currentStep === 4 && <button type="submit">送信</button>}
           </div>
