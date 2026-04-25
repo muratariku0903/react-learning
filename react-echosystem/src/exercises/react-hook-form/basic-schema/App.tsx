@@ -1,35 +1,32 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-// TODO: zod をインポート
-// TODO: @hookform/resolvers/zod から zodResolver をインポート
+import z from "zod";
 
-// TODO: Zod スキーマを定義
-// - name: string, 必須, 2文字以上
-// - email: string, 必須, email形式
-// - age: number, 必須, 18以上100以下
-// - role: enum "admin" | "user" | "editor"
-// エラーメッセージは日本語でカスタマイズすること
+const formValuesSchema = z.object({
+  name: z.string().min(2, "2文字以上で入力してください"),
+  email: z.email("メールアドレスの形式で入力してください"),
+  age: z.coerce
+    .number("数値を入力してください")
+    .min(18, "18歳以上で入力してください")
+    .max(100, "100歳以下で入力してください"),
+  role: z.enum(["admin", "user", "editor"]),
+});
 
-// TODO: z.infer でフォームの型を導出（手動で型定義しない）
-type FormValues = {
-  name: string;
-  email: string;
-  age: number;
-  role: string;
-};
+type FormValues = z.infer<typeof formValuesSchema>;
 
 export default function App() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm({
     defaultValues: {
       name: "",
       email: "",
       age: 18,
       role: "user",
     },
-    // TODO: resolver に zodResolver を接続
+    resolver: zodResolver(formValuesSchema),
   });
 
   const onSubmit = (data: FormValues) => {
@@ -46,9 +43,7 @@ export default function App() {
             名前
             <input {...register("name")} />
           </label>
-          {errors.name?.message && (
-            <p style={{ color: "red" }}>{errors.name.message}</p>
-          )}
+          {errors.name?.message && <p style={{ color: "red" }}>{errors.name.message}</p>}
         </div>
 
         {/* メールアドレス */}
@@ -66,14 +61,9 @@ export default function App() {
         <div style={{ marginBottom: 12 }}>
           <label>
             年齢
-            <input
-              type="number"
-              {...register("age", { valueAsNumber: true })}
-            />
+            <input type="number" {...register("age")} />
           </label>
-          {errors.age?.message && (
-            <p style={{ color: "red" }}>{errors.age.message}</p>
-          )}
+          {errors.age?.message && <p style={{ color: "red" }}>{errors.age.message}</p>}
         </div>
 
         {/* 役割 */}
@@ -86,9 +76,7 @@ export default function App() {
               <option value="editor">編集者</option>
             </select>
           </label>
-          {errors.role?.message && (
-            <p style={{ color: "red" }}>{errors.role.message}</p>
-          )}
+          {errors.role?.message && <p style={{ color: "red" }}>{errors.role.message}</p>}
         </div>
 
         <button type="submit">登録</button>
