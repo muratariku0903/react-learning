@@ -1,0 +1,21 @@
+{
+  "name": "rxjs-learning",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/exercises/01-observer-subscribe/main.ts",
+    "exercise:01": "tsx src/exercises/01-observer-subscribe/main.ts",
+    "exercise:02": "tsx src/exercises/02-lazy-execution/main.ts",
+    "exercise:03": "tsx src/exercises/03-unsubscribe-cleanup/main.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.0",
+    "tsx": "^4.20.6",
+    "typescript": "~5.9.3"
+  }
+}
